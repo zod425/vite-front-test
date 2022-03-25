@@ -9,6 +9,11 @@
   <input type="text" v-model="params.feignMessage">
   <button @click="testFiegn">테스트</button>
   <p> feign 결과 : {{feignResult}}</p>
+
+  <h1>Feign 오류 테스트</h1>
+  <input type="text" v-model="params.feignMessage">
+  <button @click="testFiegnFail">테스트</button>
+  <p> feign 결과 : {{feignFailResult}}</p>
 </template>
 
 <script>
@@ -25,6 +30,7 @@ export default {
     return {
       kafkaResult: {},
       feignResult: {},
+      feignFailResult: {},
       params: {},
     }
   },
@@ -39,6 +45,12 @@ export default {
     testFiegn() {
       exampleService.getFeign(this.params).then(res => {
         this.feignResult = res;
+      });
+    },
+
+    testFiegnFail() {
+      exampleService.setFeign(this.params).then(res => {
+        this.feignFailResult = res;
       });
     }
   }

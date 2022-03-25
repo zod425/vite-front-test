@@ -7,7 +7,6 @@ const app = createApp(App);
 import store from "./store";
 
 // 공통 css
-import "./assets/styles/index.scss";
 import "@mdi/font/scss/materialdesignicons.scss";
 
 // import element-plus

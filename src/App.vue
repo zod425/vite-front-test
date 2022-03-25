@@ -1,8 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
 
-  <button @click="testKafka">result: {{ result }}</button>
+  <h1>Kafka 테스트</h1>
+  <input type="text" v-model="params.message">
+  <button @click="testKafka">테스트</button>
+  <p> kafka 결과 : {{kafkaResult}}</p>
+
+  <h1>Feign 테스트</h1>
+  <input type="text" v-model="params.feignMessage">
+  <button @click="testFiegn">테스트</button>
+  <p> feign 결과 : {{feignResult}}</p>
 </template>
 
 <script>
@@ -17,16 +23,22 @@ export default {
 
   data() {
     return {
-      result: {},
+      kafkaResult: {},
+      feignResult: {},
+      params: {},
     }
   },
 
   methods: {
 
     testKafka() {
-
-      exampleService.kafka().then(res => {
-        this.result = res.data;
+      exampleService.kafka(this.params).then(res => {
+        this.kafkaResult = res;
+      });
+    },
+    testFiegn() {
+      exampleService.getFeign(this.params).then(res => {
+        this.feignResult = res;
       });
     }
   }

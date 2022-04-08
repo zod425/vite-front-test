@@ -16,6 +16,8 @@
     <input type="text" v-model="params.tel">
   </div>
 
+<h2>params</h2>
+<p>{{params}}</p>
 
   <h2>Kafka 테스트</h2>
   <button @click="testKafka">Kafka 테스트</button>
@@ -43,7 +45,7 @@ export default {
       kafkaResult: {},
       feignResult: {},
       feignFailResult: {},
-      params: {},
+      params: {id:"", name:"", tel: ""},
     }
   },
 
@@ -52,20 +54,20 @@ export default {
     testKafka() {
       this.kafkaResult = null;
       exampleService.kafka(this.params).then(res => {
-        this.kafkaResult = res;
+        this.kafkaResult = res.data;
       });
     },
     testFiegn() {
       this.feignResult = null;
-      exampleService.getFeign(this.params).then(res => {
-        this.feignResult = res;
+      exampleService.testFeign(this.params).then(res => {
+        this.feignResult = res.data;
       });
     },
 
     testFiegnFail() {
       this.feignFailResult = null;
-      exampleService.setFeign(this.params).then(res => {
-        this.feignFailResult = res;
+      exampleService.testFeignError(this.params).then(res => {
+        this.feignFailResult = res.data;
       });
     }
   }

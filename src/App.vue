@@ -24,7 +24,7 @@
   <p> kafka 결과 : {{kafkaResult}}</p>
 
   <h2>Feign 테스트</h2>
-  <button @click="testFiegn" :disabled="!feignResult">Feign 테스트 (10초 후 응답)</button>
+  <button @click="testFiegn" :disabled="!feignResult">Feign 테스트 (3초 후 응답)</button>
   <p> feign 결과 : {{feignResult}}</p>
 
   <h2>Feign 오류 테스트</h2>
